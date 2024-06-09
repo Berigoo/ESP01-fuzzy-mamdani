@@ -233,7 +233,7 @@ async def handle_websocket(websocket):
 
 
 async def main():
-    async with serve(handle_websocket, "192.168.1.5", 8765):        
+    async with serve(handle_websocket, "192.168.1.5", 8765):        # change this websocket addrees to your local address
         await asyncio.Future()
 
 
