@@ -169,32 +169,7 @@ def clear():
 
 
 
-# mfPlot(suhu, ['dingin', 'hangat', 'panas'], 'suhu', 'membership', 'Suhu')
-# mfPlot(hum, ['kering', 'lembab', 'basah'], 'kelembaban', 'membership', 'Kelembaban')
-# mfPlot(curah_hujan, ['rendah', 'sedang', 'tinggi'], 'curah hujan', 'membership', 'Curah Hujan')
-# plt.show()
 
-# suhu.view()
-# hum.view()
-# curah_hujan.view()
-#
-# plt.show()
-#
-# # testing
-# import pandas as pd
-# temp = [24, 23.3, 23.7, 24.1, 24.6, 24.1, 23.7, 23.9, 24.7, 25.5, 24.8, 24.6]
-# humidity = [76, 80, 80, 79, 77, 77, 72, 70, 64, 65, 79, 78]
-# curah_hujan_riil = [67, 111, 200, 276, 269, 90, 24, 30, 18, 62, 239, 365]
-# result = []
-# for i in range(len(temp)):
-#     result.append(calculate(temp[i], humidity[i])[0])
-# error_percentage = np.multiply(np.divide(abs(np.subtract(curah_hujan_riil, result)), result), 100)
-# MAE = 1/len(error_percentage) * np.sum(error_percentage)
-# frame = pd.DataFrame(np.column_stack((temp, humidity, result, curah_hujan_riil, error_percentage)),
-#                      columns=['Suhu (C)', 'Humidity (%)', 'Curah Hujan (mm)', 'Curah Hujan Asli (mm)', 'error (%)'])
-# print(frame)
-# print(f"Rata-rata persentase error: {round(MAE, 2)}%")
-#
 connected = set()
 monitor = set()
 

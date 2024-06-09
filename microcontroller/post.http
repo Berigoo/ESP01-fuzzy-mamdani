@@ -1,0 +1,8 @@
+POST http://192.168.0.2:80
+Content-Type: application/json
+
+{
+  "ssid": "YOUR_SSID",
+  "ssid_pass": "YOUR_SSID_PASS",
+  "hostname": "YOUR_WEBSOCKET_SERVER_ADDRESS"   // webssocket server address
+}

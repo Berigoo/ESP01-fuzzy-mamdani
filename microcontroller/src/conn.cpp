@@ -27,13 +27,20 @@ void conn::openServer(bool& stop) {
             stop = false;
             server.send(405, "text/plain", "Method Not Allowed");
         } else {
-            Serial.println("POST");
-            if(server.hasArg("ssid") && server.hasArg("ssid_pass") && server.hasArg("hostname")){
+            JsonDocument doc;
+            DeserializationError err = deserializeJson(doc, server.arg("plain"));
+            if(err){
+                Serial.printf("deserialize failed");
+                server.send(400, "text/plain", "post data invalid");
+                return;
+            }
+
+            if(doc["ssid"] && doc["ssid_pass"] && doc["hostname"]){
                 Serial.println("Setting data");
 
-                String ssid = server.arg("ssid");
-                String ssidPass = server.arg("ssid_pass");
-                String hostname = server.arg("hostname");
+                String ssid = doc["ssid"];
+                String ssidPass = doc["ssid_pass"];
+                String hostname = doc["hostname"];
 
                 memcpy(&storage::ssid, ssid.c_str(), ssid.length()+1);                  // +1 for null terminator
                 memcpy(&storage::ssid_pass, ssidPass.c_str(), ssidPass.length()+1);
@@ -51,7 +58,7 @@ void conn::openServer(bool& stop) {
                 }
             }else{
                 stop = false;
-                server.send(422);
+                server.send(422, "text/plain", "not fullfill params (ssid, ssid_pass, hostname)");
             }
         }
     });

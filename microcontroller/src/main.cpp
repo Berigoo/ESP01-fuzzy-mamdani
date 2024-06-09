@@ -51,8 +51,6 @@ void setup() {
     delayMs = sensor.min_delay / 1000;
 
     // connectivity
-    Serial.println(storage::ssid);
-    Serial.println(storage::ssid_pass);
     WiFi.begin(storage::ssid, storage::ssid_pass);
     Serial.printf("Connecting to %s", storage::ssid);
     int count = 0;
