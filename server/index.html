@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuzzy Logic System Interface</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<header>
+    <h1>Fuzzy Logic System Interface</h1>
+</header>
+
+<main>
+    <!-- Section: Live Data -->
+    <section id="live-data">
+        <h2>Live Data</h2>
+        <div class="data">
+            <p>Suhu: <span id="temp-value">--</span>°C</p>
+            <p>Kelembaban: <span id="humidity-value">--</span>%</p>
+            <p>Curah Hujan: <span id="curah-hujan-value">--</span> mm/bulan</p>
+        </div>
+    </section>
+
+    <div class="section-container">
+    <!-- Section: Fuzzification -->
+    <section id="fuzzification">
+        <h2>Fuzzification</h2>
+        <div class="content">
+            <img src="https://via.placeholder.com/400x200?text=Fuzzification+Diagram" alt="Fuzzification Diagram" id="fuzzification-img1">
+            <img src="https://via.placeholder.com/400x200?text=Fuzzification+Diagram" alt="Fuzzification Diagram" id="fuzzification-img2">
+        </div>
+    </section>
+
+    <!-- Section: Inference -->
+    <section id="inference">
+        <h2>Inference</h2>
+        <div class="content">
+            <img src="https://via.placeholder.com/400x200?text=Inference+Diagram" alt="Inference Diagram" id="interference-img1">
+        </div>
+    </section>
+
+    <!-- Section: Defuzzification -->
+    <section id="defuzzification">
+        <h2>Defuzzification</h2>
+        <div class="content">
+            <img src="https://via.placeholder.com/400x200?text=Defuzzification+Diagram" alt="Defuzzification Diagram" id="defuzzification-img1">
+        </div>
+    </section>
+    </div>
+</main>
+
+</body>
+</html>
+
+
+<script>
+    // $(document).ready(function (e) {
+    //     $('#change-button').on('click', function (e) {
+    //         alert("clicked");
+    //     });
+    // });
+
+
+    // Create a WebSocket instance
+    // and connect to the server
+    const socket = new WebSocket('ws://192.168.1.5:8765');
+
+    // Event listener for when
+    //the WebSocket connection is opened
+    socket.onopen = function (event) {
+        socket.send('monitor');
+    };
+
+    // Event listener for when a message
+    //  is received from the server
+    socket.onmessage = function (event) {
+        refresh(event.data);
+    };
+
+    // Event listener for when the
+    // WebSocket connection is closed
+    socket.onclose = function (event) {
+        // Log a message when disconnected
+        //  from the WebSocket server
+        console.log('Disconnected from WebSocket server');
+    };
+
+    // Function to send a message
+    //  to the WebSocket server
+    function sendMessage() {
+        // Get the message input element
+        const messageInput = document
+            .getElementById('messageInput');
+        // Get the value of
+        // the message input
+        const message = messageInput.value;
+        // Send the message to
+        // the WebSocket server
+        socket.send(message);
+        // Clear the message input
+        messageInput.value = '';
+    }
+</script>
+</body>
+
+</html>
