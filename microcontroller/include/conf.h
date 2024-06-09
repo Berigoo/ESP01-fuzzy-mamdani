@@ -2,4 +2,4 @@
 #define SSID "YOUR_SSID"
 #define SSID_PASS "YOUR_SSID_PASS"
 #define DHT_11_PIN 2
-#define READ_EEPROM true
+#define READ_EEPROM false     // read eeprom on start
